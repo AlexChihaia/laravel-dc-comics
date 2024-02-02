@@ -15,7 +15,7 @@
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-6 justify-content-center text-center ">
-                <span class="mx-2"><a href="http://">Our Comics</a></span>
+                <span class="mx-2"><a href="{{ route('comics.index') }}" class="">Our comics</a></span>
                 <span class="mx-2"><a href="http://">Create your own comic</a></span>
                 <span class="mx-2"><a href="http://">About comics</a></span>
             </div>
