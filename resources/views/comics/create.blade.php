@@ -13,12 +13,48 @@
 
     <h1 class="text-center">DC Comic Shop</h1>
     <div class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-6 justify-content-center text-center ">
-                <span class="mx-2"><a href="http://">Our Comics</a></span>
-                <span class="mx-2"><a href="http://">Create your own comic</a></span>
-                <span class="mx-2"><a href="http://">About comics</a></span>
+        <h2 class="text-center">Create your comic</h2>
+        <form action="{{ route('comics.store')}}" method="POST">
+          @csrf
+            <div class="mb-3">
+                <label  class="form-label">Title</label>
+                <input type="text" class="form-control" name="title">
+              </div>
+            <div class="mb-3">
+                <label  class="form-label">Description</label>
+                <textarea class="form-control" name="description" cols="30" rows="10"></textarea>
+              </div>
+            <div class="mb-3">
+                <label  class="form-label">Thumbnail</label>
+                <input type="text" class="form-control" name="thumb">
+              </div>
+            <div class="mb-3">
+                <label  class="form-label">Price</label>
+                <input type="text" class="form-control" name="price">
+              </div>
+            <div class="mb-3">
+                <label  class="form-label">Series</label>
+                <input type="text" class="form-control" name="series">
+              </div>
+            <div class="mb-3">
+                <label class="active">Publish date</label>
+                <input type="date" name="sale_date">
+              </div>
+            <div class="mb-3">
+                <label  class="form-label">Tipo</label>
+                <input type="text" class="form-control" name="type">
             </div>
+            <div class="mb-3">
+                <label  class="form-label">Artists</label>
+                <input type="text" class="form-control" name="artists">
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Writers</label>
+                <input type="text" class="form-control" name="writers">
+            </div>
+
+              <button type="submit" class="btn btn-primary">Submit your comic</button>
+        </form>
         </div>
     </div>
 

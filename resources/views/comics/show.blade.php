@@ -12,8 +12,13 @@
 <body>
 
     <h1 class="text-center">{{$comic->title}}</h1>
-    <div class="container my-4">
-        <div class="card">
+    <div class="container d-flex my-4 justify-content-center">
+        <div class="d-flex card w-50 align-items-center">
+            <h2 class="text-center">Price: ${{$comic->price}}</h2>
+            <img class="w-50" src="{{$comic->thumb}}" alt="comic"> 
+            <h3 class="text-center">Type: {{$comic->type}}</h3>
+            <p class="px-5 text-center">{{$comic->description}}</p>
+
 
         </div>
     </div>
