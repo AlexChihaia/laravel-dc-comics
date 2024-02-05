@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use Illuminate\Http\Request;
 use App\Models\Comic;
 use Illuminate\Support\Facades\Validator;
@@ -31,14 +33,14 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
 
 
 
         // $data = $request->all();
 
-        $data = $this->validation($request->all());
+        $data = $request->validated();
 
         $comic = new Comic();
 
@@ -84,9 +86,9 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $comic->update($data);
 
@@ -103,7 +105,7 @@ class ComicController extends Controller
         return redirect()->route('comics.index');
     }
 
-    private function validation($data)
+    /* private function validation($data)
     {
         $validator = Validator::make($data, [
 
@@ -113,11 +115,11 @@ class ComicController extends Controller
                 Rule::in(['comic book', 'graphic novel'])
             ],
             'price' => 'required|numeric',
-            'thumb' => 'required|url|ends_with:png,jpg,webp,jpeg|max:200',
+            'thumb' => 'required|url|max:250',
             'description' => 'required|max:999',
             'sale_date' => 'required|date',
 
         ])->validate();
         return $validator;
-    }
+    } */
 }
