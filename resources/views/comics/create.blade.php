@@ -45,7 +45,10 @@
             @endif
             <div class="mb-3">
                 <label class="form-label">Title</label>
-                <input type="text" class="form-control" name="title" required>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" required>
+                @error('title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
             </div>
             <div class="mb-3">
@@ -54,11 +57,17 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Thumbnail</label>
-                <input type="text" class="form-control" name="thumb">
+                <input type="text" class="form-control @error('thumb') is-invalid @enderror" name="thumb">
+                @error('thumb')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input type="text" class="form-control" name="price" required>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" required>
+                @error('price')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label">Series</label>
@@ -66,11 +75,17 @@
             </div>
             <div class="mb-3">
                 <label class="active">Publish date</label>
-                <input type="date" name="sale_date">
+                <input type="date" class="@error('sale_date') is-invalid @enderror" name="sale_date">
+                @error('sale_date')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label">Tipo</label>
-                <input type="text" class="form-control " name="type" required>
+                <input type="text" class="form-control @error('type') is-invalid @enderror" name="type" required>
+                @error('type')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
             </div>
             <div class="mb-3">

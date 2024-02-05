@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
@@ -33,32 +34,25 @@ class ComicController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'title' => 'required|max:40',
-            'type' => [
-                'required',
-                Rule::in(['comic book', 'graphic novel'])
-            ],
-            'price' => 'required|numeric',
-            'thumb' => 'required|url|ends_with:png,jpg,webp,jpeg|max:200',
-            'description' => 'required|max:999',
-            'sale_date' => 'required|date',
-        ]);
 
-        $data = $request->all();
+
+        // $data = $request->all();
+
+        $data = $this->validation($request->all());
 
         $comic = new Comic();
 
-        $comic->title = $data['title'];
-        $comic->description = $data['description'];
-        $comic->thumb = $data['thumb'];
-        $comic->price = $data['price'];
-        $comic->series = $data['series'];
-        $comic->sale_date = $data['sale_date'];
-        $comic->type = $data['type'];
-        $comic->writers = $data['writers'];
-        $comic->artists = $data['artists'];
+        //  $comic->title = $data['title'];
+        //  $comic->description = $data['description'];
+        //$comic->thumb = $data['thumb'];
+        //$comic->price = $data['price'];
+        //$comic->series = $data['series'];
+        //$comic->sale_date = $data['sale_date'];
+        //$comic->type = $data['type'];
+        //$comic->writers = $data['writers'];
+        //$comic->artists = $data['artists'];
 
+        $comic->fill($data);
         $comic->save();
 
 
@@ -107,5 +101,23 @@ class ComicController extends Controller
         $comic->delete();
 
         return redirect()->route('comics.index');
+    }
+
+    private function validation($data)
+    {
+        $validator = Validator::make($data, [
+
+            'title' => 'required|max:40',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel'])
+            ],
+            'price' => 'required|numeric',
+            'thumb' => 'required|url|ends_with:png,jpg,webp,jpeg|max:200',
+            'description' => 'required|max:999',
+            'sale_date' => 'required|date',
+
+        ])->validate();
+        return $validator;
     }
 }
