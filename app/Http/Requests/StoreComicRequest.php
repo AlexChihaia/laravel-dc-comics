@@ -34,4 +34,14 @@ class StoreComicRequest extends FormRequest
             'sale_date' => 'required|date',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title' => [
+                'required' => 'Il campo titolo non può essere vuoto!',
+                'max' => 'Non puoi superare i :max caratteri!'
+            ],
+        ];
+    }
 }
